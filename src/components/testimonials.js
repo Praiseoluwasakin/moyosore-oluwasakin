@@ -3,6 +3,51 @@ import { ChevronLeft, ChevronRight } from "lucide-react";
 
 const testimonials = [
   {
+    name: "Shopify Store Success Manager",
+    role: "Shopify Success Manager (62 Hours)",
+    date: "Aug 12, 2025 - Nov 19, 2025",
+    text: "Moyosore was always available ready to help. He helped us from start to launch of our page, thank you Moyosore!",
+    initials: "SM",
+    rating: 5.0,
+    endorsements: ["Reliable", "Solution Oriented"]
+  },
+  {
+    name: "Water-Sports Brand Designer",
+    role: "Shopify Designer/Developer (Fixed Price)",
+    date: "Oct 27, 2025 - Nov 11, 2025",
+    text: "Got the job done. Was faster than scheduled end dates and had no problem working hard and trying his absolute best to deliver the best website for me.",
+    initials: "WS",
+    rating: 5.0,
+    endorsements: ["Reliable", "Accountable for Outcomes"]
+  },
+  {
+    name: "Atlas-Style Store Structure",
+    role: "Shopify Expert (15 Hours)",
+    date: "Oct 1, 2025 - Oct 10, 2025",
+    text: "I especially appreciated the 2/3 times that we did live consultations, making updates to templates in real time. Highly recommend.",
+    initials: "AS",
+    rating: 5.0,
+    endorsements: ["Clear Communicator"]
+  },
+  {
+    name: "Store Locator App",
+    role: "Shopify Developer (Fixed Price)",
+    date: "Sep 3, 2025 - Sep 10, 2025",
+    text: "His work was completed quickly, with a high level of professionalism and attention to detail. Communication was smooth, and everything was delivered exactly as promised. Highly recommend!",
+    initials: "SL",
+    rating: 5.0,
+    endorsements: ["Professional", "Detail Oriented", "Clear Communicator", "Reliable"]
+  },
+  {
+    name: "Website Design Agreement",
+    role: "Shopify Web Designer (Fixed Price)",
+    date: "Apr 26, 2025 - May 22, 2025",
+    text: "Working with Moyosore was a great experience. He understood my vision perfectly and delivered a clean, functional, and beautiful website. I'm very happy with the outcome and looking forward to collaborating again!",
+    initials: "WA",
+    rating: 5.0,
+    endorsements: ["Collaborative", "Clear Communicator", "Committed to Quality"]
+  },
+  {
     name: "Holistic Culinary Arts",
     role: "Shopify Store Owner (41 Hours)",
     date: "Nov 24, 2025 - Jun 12, 2026",
