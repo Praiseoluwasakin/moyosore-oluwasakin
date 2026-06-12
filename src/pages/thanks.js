@@ -5,10 +5,10 @@ export default function ThanksPage() {
   return (
     <>
       <Head>
-        <title>Thank you — Praise Oluwasakin</title>
+        <title>Thank you — Moyosore O.F</title>
         <meta
           name="description"
-          content="Thanks for reaching out to Praise Oluwasakin. I’ll review your message and get back to you shortly."
+          content="Thanks for reaching out to Moyosore O.F. I’ll review your message and get back to you shortly."
         />
       </Head>
       <div className="min-h-screen bg-slate-950 bg-[radial-gradient(circle_at_top,_#1d4ed8_0,_transparent_55%),radial-gradient(circle_at_bottom,_#0f172a_0,_transparent_55%)] flex items-center justify-center px-6">

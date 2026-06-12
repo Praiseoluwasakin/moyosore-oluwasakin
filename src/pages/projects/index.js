@@ -9,8 +9,8 @@ export default function Projects({ projects }) {
   return (
     <>
       <NextSeo
-        title="Projects — Praise Oluwasakin"
-        description="Selected projects and case studies by Praise Oluwasakin. Custom Shopify themes, Next.js sites, and e-commerce builds."
+        title="Projects — Moyosore O.F"
+        description="Selected e-commerce projects and Shopify custom storefront designs by Moyosore O.F."
         canonical="https://praise-oluwasakin-website.vercel.app/projects"
       />
 

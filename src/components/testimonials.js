@@ -3,50 +3,75 @@ import { ChevronLeft, ChevronRight } from "lucide-react";
 
 const testimonials = [
   {
-    name: "All In Lid Team",
-    role: "Shopify Store Owners",
-    text: "Praise has been an absolute game changer for All In Lid. He completely revamped our Shopify store, launched our beanie product line, built smart cart upsells to push AOV, and set up our entire Klaviyo infrastructure from scratch — abandoned cart flows, welcome sequences, back-in-stock automations, a new drop campaign, and email capture popups. He also handled our SEO, Google Search Console, JudgeMe review integration, and tiered discount architecture. Professional, proactive, and always one step ahead of what we need.",
-    initials: "AIL",
+    name: "Holistic Culinary Arts",
+    role: "Shopify Store Owner (41 Hours)",
+    date: "Nov 24, 2025 - Jun 12, 2026",
+    text: "I couldn't thank Moyo enough for keeping up with my less than basic knowledge of upkeeping my website. He has been so patient and understanding. He shared knowledge consistently just to give me ideas quite difficult for me to come up with. I see his passion in his works, and I hope he is still available for my future projects",
+    initials: "HC",
+    rating: 5.0,
+    endorsements: ["Committed to Quality", "Solution Oriented", "Clear Communicator", "Professional"]
   },
   {
-    name: "Oluwadamilola",
-    role: "Fullstack Developer / Project Lead",
-    text: "Praise joined the Eau Deals project as our frontend engineer and quickly got up to speed on a React Vite codebase that wasn't the cleanest. He refactored the code structure, built the user dashboard, and integrated our backend REST API endpoints across the entire frontend. He also delivered the frontend for Cost to Baby — connecting new API endpoints, fixing the UI, and sending detailed progress reports throughout. He's communicative, technical, and genuinely committed to getting things done right.",
-    initials: "OD",
+    name: "Lash Sales with QuickBooks Integration",
+    role: "Shopify Developer (60 Hours)",
+    date: "Apr 20, 2026 - Jun 9, 2026",
+    text: "Super great to work with! Coming from someone with no background he was very helping and was willing to be patient",
+    initials: "LS",
+    rating: 5.0,
+    endorsements: ["Committed to Quality", "Clear Communicator", "Detail Oriented"]
   },
   {
-    name: "Faith Olusakin",
-    role: "Shopify Expert & Freelancer",
-    text: "Praise has been an incredible asset across multiple projects. He built and maintained the Rhema Christian Church website from the ground up — handling sermon uploads, event pages, a full branches directory, ministry sections, and ongoing content updates. He also worked on several of my client stores: Roros, Ruens, Ohm Med Spa (Prestige theme), and the Okahisi fashion store. On top of all that, he built my personal developer portfolio from scratch in under 24 hours. He's fast, reliable, and genuinely cares about the quality of his output. I'd recommend him without hesitation.",
-    initials: "FO",
-  },
-  {
-    name: "Oluwaseyi",
-    role: "Shopify Agency Owner",
-    text: "Praise has helped me deliver multiple Shopify stores for my clients over the months. From the Happy Brand lifestyle marketplace with 17 product categories and neon custom styling, to Ryuu Gear — a martial arts supply store complete with logo design and SaleHoo dropshipping setup — to Golden Green Boutique, a women's fashion store with sorority shop dropdowns, Instagram feed integration, custom typography and the Dawn theme. He handles everything fast and communicates well even under tight deadlines. Solid developer to have on your team.",
-    initials: "OS",
-  },
+    name: "Website Design For Clinic",
+    role: "Shopify Web Designer (Fixed Price)",
+    date: "Jan 21, 2026 - Jan 27, 2026",
+    text: "Does great work and delivers on time. Also willing to work with you based on your feedback. I would work with Moyosore again.",
+    initials: "WD",
+    rating: 5.0,
+    endorsements: ["Reliable", "Collaborative", "Committed to Quality", "Clear Communicator", "Detail Oriented"]
+  }
 ];
 
 const HOLD_MS = 9000;
 
 const TestimonialCard = ({ item }) => (
   <div className="w-full flex-shrink-0 px-1">
-    <div className="border border-architectural p-5 md:p-8 bg-brand-bg min-h-[280px] md:min-h-[320px] flex flex-col justify-between">
-      <p className="font-body text-sm md:text-base text-brand-navy italic leading-relaxed mb-6">
-        &ldquo;{item.text}&rdquo;
-      </p>
-      <div className="flex items-center gap-4">
-        <div className="w-10 h-10 md:w-12 md:h-12 bg-brand-navy flex items-center justify-center rounded-full text-brand-bg font-display font-semibold text-xs md:text-sm shrink-0">
-          {item.initials}
+    <div className="border border-architectural p-6 md:p-8 bg-brand-bg/50 min-h-[340px] md:min-h-[380px] flex flex-col justify-between transition-colors duration-300">
+      <div>
+        <div className="flex items-center justify-between mb-4">
+          <div className="flex gap-1 text-[#85c7f2] text-sm">
+            {"★".repeat(Math.round(item.rating))}
+          </div>
+          <span className="font-body text-[10px] text-brand-navy/60 uppercase tracking-wider">
+            {item.date}
+          </span>
         </div>
-        <div>
-          <p className="font-body font-semibold text-sm text-brand-navy">
-            {item.name}
-          </p>
-          <p className="font-body text-xs text-accent uppercase tracking-wider">
-            {item.role}
-          </p>
+        <p className="font-body text-sm md:text-base text-brand-navy italic leading-relaxed mb-6">
+          &ldquo;{item.text}&rdquo;
+        </p>
+      </div>
+      
+      <div className="flex flex-col gap-4">
+        {/* Endorsements tags */}
+        <div className="flex flex-wrap gap-1.5">
+          {item.endorsements.map((tag) => (
+            <span key={tag} className="text-[9px] uppercase tracking-wider px-2 py-0.5 border border-architectural text-brand-navy/70 rounded-full">
+              {tag}
+            </span>
+          ))}
+        </div>
+        
+        <div className="flex items-center gap-4 border-t border-architectural/50 pt-4">
+          <div className="w-10 h-10 md:w-12 md:h-12 bg-brand-navy flex items-center justify-center rounded-full text-brand-bg font-display font-semibold text-xs md:text-sm shrink-0">
+            {item.initials}
+          </div>
+          <div>
+            <p className="font-body font-semibold text-sm text-brand-navy">
+              {item.name}
+            </p>
+            <p className="font-body text-[10px] md:text-xs text-brand-navy/70 uppercase tracking-wider">
+              {item.role}
+            </p>
+          </div>
         </div>
       </div>
     </div>

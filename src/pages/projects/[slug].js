@@ -17,12 +17,12 @@ export default function ProjectPage({ project }) {
   return (
     <>
       <NextSeo
-        title={`${project.title} — Praise Oluwasakin`}
+        title={`${project.title} — Moyosore O.F`}
         description={project.desc}
         canonical={url}
         openGraph={{
           url,
-          title: `${project.title} — Praise Oluwasakin`,
+          title: `${project.title} — Moyosore O.F`,
           description: project.desc,
           images: project.image
             ? [

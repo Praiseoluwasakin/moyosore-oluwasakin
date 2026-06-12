@@ -6,18 +6,18 @@ export default function Document() {
       <Head>
         {/* Global meta tags */}
         <meta charSet="UTF-8" />
-        <meta name="author" content="Praise Oluwasakin" />
+        <meta name="author" content="Moyosore O.F" />
         <meta name="google-site-verification" content="_ps4i9Ooms-ueYZZZGNSBqmjEQFVFUpf32GDRvKOudI" />
 
         {/* Open Graph defaults */}
         <meta property="og:type" content="website" />
-        <meta property="og:image" content="/profile.webp" />
+        <meta property="og:image" content="/Moyosore-potrait.webp" />
 
         {/* Twitter defaults */}
         <meta name="twitter:card" content="summary_large_image" />
 
         {/* Favicon */}
-        <link rel="icon" href="/logo.png" />
+        <link rel="icon" href="/moyo-favicon-and-logo.png" />
 
         {/* Brand fonts */}
         <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -27,7 +27,7 @@ export default function Document() {
           crossOrigin="anonymous"
         />
         <link
-          href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600&family=Syne:wght@600;700;800&display=swap"
+          href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&family=Space+Grotesk:wght@500;600;700&display=swap"
           rel="stylesheet"
         />
       </Head>

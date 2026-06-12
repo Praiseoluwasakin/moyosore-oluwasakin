@@ -4,28 +4,26 @@ import Head from "next/head";
 import { DefaultSeo } from "next-seo";
 
 const DEFAULT_SEO = {
-  title: "Praise Oluwasakin | Frontend & Shopify Developer",
+  title: "Moyosore O.F | Senior Shopify Website Designer",
   description:
-    "Frontend & Shopify developer helping e‑commerce brands ship fast, conversion-focused stores with React, Next.js, Tailwind CSS, and Shopify Liquid.",
+    "Senior Shopify Website Designer with high sales conversion. Building standard, conversion-optimized, and visually stunning Shopify online stores.",
   openGraph: {
     type: "website",
     url: "https://praise-oluwasakin-website.vercel.app/",
-    title: "Praise Oluwasakin | Frontend & Shopify Developer",
+    title: "Moyosore O.F | Senior Shopify Website Designer",
     description:
-      "Frontend & Shopify developer helping e‑commerce and DTC brands ship modern, high-performing storefronts with React, Next.js, Tailwind CSS, and Shopify.",
+      "Senior Shopify Website Designer with high sales conversion. Building standard, conversion-optimized, and visually stunning Shopify online stores.",
     images: [
       {
-        url: "https://praise-oluwasakin-website.vercel.app/profile.webp",
+        url: "https://praise-oluwasakin-website.vercel.app/Moyosore-potrait.webp",
         width: 1200,
         height: 630,
-        alt: "Praise Oluwasakin Portfolio Preview",
+        alt: "Moyosore O.F Portfolio Preview",
       },
     ],
-    site_name: "Praise Oluwasakin Portfolio",
+    site_name: "Moyosore O.F Portfolio",
   },
   twitter: {
-    handle: "@mayorcodes",
-    site: "@mayorcodes",
     cardType: "summary_large_image",
   },
 };
@@ -35,22 +33,21 @@ export default function App({ Component, pageProps }) {
     <>
       <DefaultSeo {...DEFAULT_SEO} />
       <Head>
-        {/* Structured data (JSON-LD) — optional: remove birthDate if you want privacy */}
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{
             __html: JSON.stringify({
               "@context": "https://schema.org",
               "@type": "Person",
-              name: "Praise Oluwasakin",
+              name: "Moyosore O.F (Oluwasakin Favour)",
               url: "https://praise-oluwasakin-website.vercel.app/",
               sameAs: [
-                "https://twitter.com/mayorcodes",
-                "https://www.linkedin.com/in/praise-oluwasakin-409306239/",
-                "https://github.com/Praiseoluwasakin",
+                "https://www.upwork.com/freelancers/~01e48c9f09f436ce0e",
+                "https://www.instagram.com/ijobamoyo",
+                "https://www.tiktok.com/@oluwangh44g",
+                "https://www.linkedin.com/in/moyosore-oluwasakin-11a96330b",
               ],
-              jobTitle: "Frontend Developer & Shopify Expert",
-              // "birthDate": "YYYY-10-15" // optional - add a full YYYY if you want it in structured data
+              jobTitle: "Senior Shopify Website Designer",
             }),
           }}
         />

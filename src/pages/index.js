@@ -1,7 +1,5 @@
 "use client";
 import { Analytics } from "@vercel/analytics/next";
-import { app, analytics } from "../firebase";
-import { logEvent } from "firebase/analytics";
 import Head from "next/head";
 import Testimonials from "@/components/testimonials";
 import ScrollReveal from "@/components/scroll-reveal";
@@ -10,7 +8,6 @@ import { NextSeo } from "next-seo";
 import {
   Menu,
   X,
-  Download,
   ArrowRight,
   Send,
   Globe,
@@ -24,75 +21,46 @@ import {
   Heart,
   Layers,
   Activity,
-  Code,
+  Award,
+  CheckCircle,
+  Clock,
+  ThumbsUp,
+  ExternalLink,
+  Volume2,
+  VolumeX,
+  Play,
+  Pause,
   Linkedin,
-  Github,
-  Instagram,
-  Mail,
-  MessageCircle,
-  MessageSquare,
 } from "lucide-react";
 import { SiUpwork } from "react-icons/si";
-import { FaXTwitter } from "react-icons/fa6";
+import { FaInstagram, FaTiktok, FaWhatsapp } from "react-icons/fa6";
 
 export const metadata = {
-  title: "Praise Oluwasakin | Frontend & Shopify Developer",
+  title: "Moyosore O.F | Senior Shopify Website Designer",
   description:
-    "Praise Oluwasakin is a frontend and Shopify developer specializing in modern, scalable web solutions.",
+    "Moyosore O.F is a professional Senior Shopify Website Designer and developer specializing in high sales conversion online stores.",
 };
 
 const featuredProjects = [
   {
-    title: "Faith Olusakin — Developer Portfolio",
-    desc: "Built a fully custom developer portfolio website for Shopify Expert Faith Olusakin. Cloned and extended the structure of a personal portfolio, customized the color palette to light pink branding, curated and showcased 20+ client Shopify projects, and integrated LinkedIn, Upwork, and contact links. Delivered and deployed on Vercel within 24 hours of the request.",
-    tags: ["Next.js", "Vercel", "Portfolio", "Frontend"],
-    url: "https://faitholusakinwebsite.vercel.app",
-    media: "/faith-portfolio.png",
-    Icon: Globe,
-  },
-  {
-    title: "Rhema Christian Church — Church Website",
-    desc: "Built and maintained the full website for Rhema Christian Church and Towers on Shopify. Developed dedicated pages for Men, Women, Youth, and Children ministries, a Branches directory with location and pastor details for 8+ branches, a Sunday Teachings blog with weekly sermon uploads, event announcements including the Women Aglow International Convention 2025, and an Online Christian Counseling section. Managed ongoing content updates across the entire site.",
-    tags: ["Shopify", "Shopify Liquid", "PageFly", "Content Management"],
-    url: "https://rhemachurchonline.org",
-    media: "/rhema-website.png",
-    Icon: Globe,
-  },
-  {
     title: "All In Lid — Shopify Store & Klaviyo",
-    desc: "Full Shopify store revamp for a premium headwear brand running Meta Ads. Handled theme customization in Prestige, product listings for hats and beanies, cart upsell logic to push AOV, and a complete Klaviyo email build — abandoned cart flows, welcome sequences, back-in-stock automations, new drop campaigns, and popup email capture. Also managed SEO, Google Search Console, JudgeMe review integration, tiered discount architecture, and site performance.",
-    tags: ["Shopify", "Shopify Liquid", "Klaviyo", "SEO", "ReConvert"],
+    desc: "Full Shopify store revamp for a premium headwear brand. Custom theme in Prestige, product listings, cart upsell logic to push AOV, and a complete Klaviyo email automation workflow build — abandoned cart flows, welcome sequences, back-in-stock automations, and JudgeMe review integration.",
+    tags: ["Shopify", "Prestige Theme", "Klaviyo", "CRO"],
     url: "https://allinlid.com",
     media: "/allinlid.png",
     Icon: ShoppingBag,
   },
   {
-    title: "Eau Deals — Frontend & API Integration",
-    desc: "Frontend development on a deals and offers platform built with React Vite and Tailwind CSS. Refactored a scattered codebase for maintainability, built the full user dashboard UI from Figma designs, and integrated all backend REST API endpoints — authentication flows, product listings, testimonials, and offer sections. Deployed on Vercel with backend on Render.",
-    tags: ["React", "Vite", "Tailwind CSS", "REST API"],
-    url: "https://eau-deals.vercel.app",
-    media: "/eau-deals.png",
+    title: "Rhema Christian Church — Website",
+    desc: "Developed and maintained the full website on Shopify. Built ministry pages, Sunday Teachings weekly blogs, events registration, and counselor calendar setup. Delivered detailed theme customizations using PageFly for conversion optimization.",
+    tags: ["Shopify", "PageFly", "Shopify Liquid"],
+    url: "https://rhemachurchonline.org",
+    media: "/rhema-website.png",
     Icon: Globe,
   },
   {
-    title: "Cost to Baby — Web App UI & API Integration",
-    desc: "Frontend build for a web application that helps users calculate the costs of having a baby. Delivered all UI fixes and feature updates, connected a custom REST API backend deployed on Render, and ensured clean data flow between frontend and backend. Delivered detailed PDF progress reports throughout the project lifecycle.",
-    tags: ["React", "Tailwind CSS", "REST API"],
-    url: "https://cost-to-baby.vercel.app",
-    media: null,
-    Icon: Calculator,
-  },
-  {
-    title: "Happy Brand Store — Shopify Marketplace",
-    desc: "Full Shopify store build for a vibrant lifestyle marketplace featuring 17 product categories including The Happy Brand apparel, jewelry, home decor, activewear, aquatic goods, and more. Implemented luminescent neon navigation styling, a custom HAPPY Brand category page, Exclusives section, and an energetic vacation-meets-streetwear aesthetic with Horizon theme.",
-    tags: ["Shopify", "Horizon Theme", "Shopify Liquid", "E-commerce"],
-    url: "",
-    media: null,
-    Icon: ShoppingBag,
-  },
-  {
-    title: "Golden Green Boutique — Women's Fashion Store",
-    desc: "Shopify fashion store build for Golden Green Boutique featuring collections for clothing, shoes, accessories, and a full sorority shop with nine sorority dropdowns. Built with the Dawn theme, custom typography matching the brand guide, Instagram feed integration, and a Klaviyo email popup. Designed to match the aesthetic of shopruthiegrace.com with the brand's pink-and-green palette.",
+    title: "Golden Green Boutique — Fashion Store",
+    desc: "Shopify boutique build using the Dawn theme. Tailored typography, Instagram feed integration, and a Klaviyo newsletter subscription system. Designed with a custom pink-and-green palette focused on high sales conversions.",
     tags: ["Shopify", "Dawn Theme", "Klaviyo", "Instagram Feed"],
     url: "https://www.shopgoldengreen.com",
     media: "/golden-green.png",
@@ -100,175 +68,197 @@ const featuredProjects = [
   },
   {
     title: "Ryuu Gear — Martial Arts Shopify Store",
-    desc: "Shopify store build for a martial arts supply brand targeting men, women, children, and diverse communities. Designed and refined the Ryuu Gear brand identity including logo creation, set up the store using SaleHoo for dropshipping, and customized the theme with a strong, traditional-meets-modern aesthetic.",
+    desc: "Shopify store setup for a martial arts brand. Designed the complete brand identity, logo, and integration of dropshipping products using SaleHoo. Tailored checkout flow for high conversion rate optimization.",
     tags: ["Shopify", "Dropshipping", "SaleHoo", "Logo Design"],
     url: "",
     media: null,
     Icon: ShoppingBag,
   },
   {
-    title: "Anieca Turner Contemporary Art — Shopify Store",
-    desc: "Shopify store for a contemporary painter and illustrator selling fine art prints and original artworks. Built product listings with size-based pricing, matched branding from the existing portfolio site using Above the Beyond Script and Poppins fonts, integrated a print-on-demand workflow with Stackhouse Printing, and added a mailing list popup for audience building.",
-    tags: ["Shopify", "Print on Demand", "E-commerce", "Art Store"],
-    url: "https://aniecaturner.com",
-    media: null,
-    Icon: Palette,
-  },
-  {
-    title: "Roros — Shopify Product Store",
-    desc: "Shopify store work for Roros, an e-commerce brand based in Kenya. Handled product catalog management including sourcing and adding high-quality product images from supplier references, and maintaining accurate product listings across the store.",
-    tags: ["Shopify", "E-commerce", "Product Management"],
-    url: "https://roros.co.ke",
-    media: null,
-    Icon: ShoppingBag,
-  },
-  {
     title: "Ohm Med Spa — Shopify Store",
-    desc: "Shopify store build and maintenance for Ohm Med Spa using the Prestige theme. Set up all page templates, structured the storefront layout, and handled ongoing fixes and updates to keep the site running smoothly.",
-    tags: ["Shopify", "Prestige Theme", "E-commerce"],
+    desc: "Shopify theme custom template build and optimization using the Prestige theme. Designed pages for medical clinic services, treatment plans booking, and product e-commerce catalog structure.",
+    tags: ["Shopify", "Prestige Theme", "Booking Integration"],
     url: "https://ohmmedspa.com",
     media: "/ohm-med-spa.png",
     Icon: ShoppingBag,
   },
   {
     title: "Okahisi — Fashion & T-Shirt Store",
-    desc: "Shopify store build for Okahisi, a fashion and t-shirt brand. Designed the storefront with a custom color palette and font pairing suited to the brand's aesthetic, structured the product catalog, and delivered a clean, conversion-ready shopping experience.",
-    tags: ["Shopify", "Fashion E-commerce", "Theme Development"],
+    desc: "Modern fashion store design. Created custom font pairings, structured the product catalogs, and delivered a clean, conversion-ready e-commerce browsing and shopping cart experience.",
+    tags: ["Shopify", "Fashion E-commerce", "Theme Customization"],
     url: "https://okihasi.com",
     media: "/okihasi.png",
     Icon: ShoppingBag,
   },
+];
+
+const secondaryProjects = [
   {
     title: "EcoStick Supply — Shopify Store",
-    desc: "Shopify storefront build for EcoStick Supply, delivering a clean, conversion-focused e-commerce experience. Built product collections, theme customization, and a seamless purchase flow designed to drive sales.",
+    desc: "Clean, conversion-focused Shopify storefront featuring structured product collections and optimized single product pages.",
     tags: ["Shopify", "E-commerce", "CRO"],
     url: "https://ecosticksupply.com",
     media: "/ecostickssupply.png",
     Icon: ShoppingBag,
   },
   {
-    title: "Dola Fashion Collection — Shopify Store",
-    desc: "Fashion e-commerce Shopify store for Dola Fashion Collection. Delivered a styled, brand-consistent storefront with optimized product pages, collection layouts, and a seamless shopping experience.",
-    tags: ["Shopify", "Fashion E-commerce", "Theme Development"],
+    title: "Dola Fashion Collection — Store Design",
+    desc: "A stylized fashion e-commerce store with unique typography, tailored cart logic, and catalog layouts.",
+    tags: ["Shopify", "Theme Development", "E-commerce"],
     url: "https://dolafashioncollection.com",
     media: "/dolas-fashion-collection.png",
     Icon: ShoppingBag,
   },
   {
-    title: "Ruens — Shopify Store",
-    desc: "Shopify store build for Ruens, crafted for a clean and modern brand presence. Focused on product page UX, collection structure, and a polished frontend that converts visitors into buyers.",
-    tags: ["Shopify", "E-commerce", "Theme Development"],
+    title: "Ruens — Shopify Store Build",
+    desc: "Product pages, collection pages, and header navigation optimizations aimed to convert traffic into buyers.",
+    tags: ["Shopify", "UX Design", "Checkout Optimization"],
     url: "https://ruens.co",
     media: "/ruens.png",
     Icon: ShoppingBag,
   },
   {
     title: "Greenwich Play — Shopify Store",
-    desc: "Shopify storefront for Greenwich Play, built with a focus on clean UI, collection organization, and an enjoyable browsing experience tailored to the brand's audience.",
-    tags: ["Shopify", "E-commerce", "Theme Development"],
+    desc: "Clean UI Shopify storefront build focused on image-led category navigation and product presentation.",
+    tags: ["Shopify", "E-commerce", "Minimalist Design"],
     url: "https://shop.greenwichplay.com",
     media: "/greenwich-play.png",
     Icon: ShoppingBag,
   },
 ];
 
-const legacyProjects = [
-  {
-    title: "Wancemo Startup Website",
-    desc: "A modern startup website built with Next.js, Tailwind CSS, and Azure integration.",
-    tags: ["Next.js", "Tailwind CSS", "Azure"],
-    url: "https://www.wancemo.co.za/",
-    media: "/wancemo.png",
-    Icon: Smartphone,
-  },
-  {
-    title: "Modern-Mensch Shopify Store",
-    desc: "A sleek and conversion-optimized Shopify storefront featuring custom Liquid theme development.",
-    tags: ["Shopify", "Liquid", "React"],
-    url: "https://www.modern-mensch.com/",
-    media: "/modern-mensch.png",
-    Icon: ShoppingCart,
-  },
-  {
-    title: "Tbells 4 Fresh Shopify Store",
-    desc: "A scalable Shopify storefront built for a fresh foods brand with custom theme development.",
-    tags: ["Shopify", "Liquid", "Custom Themes"],
-    url: "https://www.tbells4freshkitchen.com/",
-    media: "/tbells.png",
-    Icon: ShoppingCart,
-  },
-  {
-    title: "Xpense Project",
-    desc: "A finance tracking app built with React and Next.js, focused on clean design and responsive layouts.",
-    tags: ["React", "Next.js", "Tailwind"],
-    url: null,
-    media: "/xpense.png",
-    Icon: Globe,
-  },
-  {
-    title: "My Portfolio Website",
-    desc: "A fully responsive personal portfolio built with Next.js and Tailwind CSS.",
-    tags: ["Next.js", "Tailwind CSS"],
-    url: "https://praise-oluwasakin-website.vercel.app/",
-    media: "/portfolio.png",
-    Icon: Globe,
-  },
-];
-
-const allProjects = [...featuredProjects, ...legacyProjects];
+const allProjects = [...featuredProjects, ...secondaryProjects];
 
 const skills = [
-  "Shopify Development",
-  "Shopify Liquid",
+  "Shopify Store Design",
   "Shopify Theme Customization",
-  "Shopify CRO (Conversion Rate Optimization)",
-  "Shopify PageFly",
-  "Shopify App Integration",
+  "Shopify Redesign",
+  "Shopify Bug Fixing",
+  "Shopify Multi-Language",
+  "PageFly Landing Pages",
   "Klaviyo Email Marketing",
-  "Klaviyo Flow Automation",
-  "Email Campaign Design",
-  "React.js",
-  "Next.js",
-  "Vite",
-  "HTML & CSS",
-  "Tailwind CSS",
-  "JavaScript",
-  "REST API Integration",
-  "Frontend Development",
-  "UI/UX Implementation",
-  "Figma to Code",
+  "Conversion Rate Optimization (CRO)",
+  "Digital Marketing",
+  "Copywriting",
+  "Graphics Design",
   "SEO Optimization",
-  "Google Search Console",
-  "Performance Auditing (Lighthouse)",
-  "Product Listing & Catalog Management",
-  "E-commerce Strategy",
-  "AOV Optimization",
-  "Upsell & Cross-sell Setup",
-  "Git & Version Control",
-  "Vercel Deployment",
-  "Content Management",
-  "Logo Design (Basic)",
-  "Web Performance Optimization",
-  "Dropshipping Store Setup (SaleHoo)",
+  "MS Excel & Word",
 ];
-
-const highlightedSkills = new Set([
-  "Klaviyo Email Marketing",
-  "Klaviyo Flow Automation",
-  "Google Search Console",
-  "Performance Auditing (Lighthouse)",
-]);
 
 const navItems = [
   { id: "about", label: "About" },
-  { id: "standards", label: "The Standard" },
-  { id: "beyond", label: "Beyond the Code" },
+  { id: "services", label: "Services" },
   { id: "skills", label: "Skills" },
   { id: "work", label: "Work" },
   { id: "testimonials", label: "Testimonials" },
+  { id: "contact", label: "Contact" },
 ];
 
-export default function PraisePortfolio() {
+// Stateful Meet Moyo Portrait Video Component with custom controls
+const MeetMoyoVideo = () => {
+  const videoRef = useRef(null);
+  const [isPlaying, setIsPlaying] = useState(true);
+  const [isMuted, setIsMuted] = useState(true);
+  const [progress, setProgress] = useState(0);
+
+  const togglePlay = () => {
+    if (videoRef.current) {
+      if (isPlaying) {
+        videoRef.current.pause();
+      } else {
+        videoRef.current.play().catch((err) => console.log(err));
+      }
+      setIsPlaying(!isPlaying);
+    }
+  };
+
+  const toggleMute = () => {
+    if (videoRef.current) {
+      videoRef.current.muted = !isMuted;
+      setIsMuted(!isMuted);
+    }
+  };
+
+  const handleTimeUpdate = () => {
+    if (videoRef.current) {
+      const current = videoRef.current.currentTime;
+      const duration = videoRef.current.duration;
+      if (duration) {
+        setProgress((current / duration) * 100);
+      }
+    }
+  };
+
+  const handleTimelineClick = (e) => {
+    if (videoRef.current) {
+      const rect = e.currentTarget.getBoundingClientRect();
+      const clickX = e.clientX - rect.left;
+      const width = rect.width;
+      const duration = videoRef.current.duration;
+      if (duration) {
+        videoRef.current.currentTime = (clickX / width) * duration;
+      }
+    }
+  };
+
+  return (
+    <div className="relative group max-w-[280px] sm:max-w-[320px] mx-auto border border-architectural overflow-hidden bg-brand-navy/5 shadow-lg">
+      <video
+        ref={videoRef}
+        src="/moyo-video-introduction.MP4"
+        autoPlay
+        loop
+        muted={isMuted}
+        playsInline
+        onTimeUpdate={handleTimeUpdate}
+        className="w-full h-auto aspect-[9/16] object-cover"
+      />
+      
+      {/* Custom Minimalist HUD Controls */}
+      <div className="absolute bottom-0 left-0 right-0 p-4 bg-gradient-to-t from-[#4c4c4c]/90 via-[#4c4c4c]/40 to-transparent flex flex-col gap-2 transition-opacity duration-300 opacity-100 md:opacity-0 md:group-hover:opacity-100">
+        {/* Playback Timeline */}
+        <div 
+          onClick={handleTimelineClick}
+          className="w-full h-1 bg-white/30 rounded-full cursor-pointer overflow-hidden relative"
+        >
+          <div 
+            style={{ width: `${progress}%` }} 
+            className="h-full bg-brand-accent transition-all duration-100"
+          />
+        </div>
+        
+        {/* Buttons HUD */}
+        <div className="flex justify-between items-center text-white text-xs font-semibold tracking-wide">
+          <button 
+            type="button"
+            onClick={togglePlay} 
+            className="hover:text-brand-accent p-1 transition-colors flex items-center gap-1.5"
+            aria-label={isPlaying ? "Pause Video" : "Play Video"}
+          >
+            {isPlaying ? <Pause className="w-3 h-3" /> : <Play className="w-3 h-3" />}
+            {isPlaying ? "PAUSE" : "PLAY"}
+          </button>
+          
+          <span className="text-[9px] uppercase tracking-widest text-white/75">
+            Meet Moyo
+          </span>
+          
+          <button 
+            type="button"
+            onClick={toggleMute} 
+            className="hover:text-brand-accent p-1 transition-colors flex items-center gap-1.5"
+            aria-label={isMuted ? "Unmute Video" : "Mute Video"}
+          >
+            {isMuted ? <VolumeX className="w-3.5 h-3.5" /> : <Volume2 className="w-3.5 h-3.5" />}
+            {isMuted ? "UNMUTE" : "MUTE"}
+          </button>
+        </div>
+      </div>
+    </div>
+  );
+};
+
+export default function MoyoPortfolio() {
   const [mobileOpen, setMobileOpen] = useState(false);
   const [active, setActive] = useState("about");
   const [showAll, setShowAll] = useState(false);
@@ -300,17 +290,11 @@ export default function PraisePortfolio() {
           }
         });
       },
-      { threshold: 0.35 },
+      { threshold: 0.25 },
     );
 
     sections.forEach((s) => obs.observe(s));
     return () => obs.disconnect();
-  }, []);
-
-  useEffect(() => {
-    if (analytics) {
-      logEvent(analytics, "page_view", { page_path: window.location.pathname });
-    }
   }, []);
 
   useEffect(() => {
@@ -331,48 +315,37 @@ export default function PraisePortfolio() {
     };
   }, []);
 
-  const downloadResume = () => {
-    const link = document.createElement("a");
-    link.href = "/resume.pdf";
-    link.download = "resume.pdf";
-    document.body.appendChild(link);
-    link.click();
-    link.remove();
-  };
-
   return (
     <>
       <NextSeo
-        title="Praise Oluwasakin | Frontend & Shopify Developer"
-        description="Frontend & Shopify developer specializing in pixel-perfect frontend development and high-performance Shopify architectures."
+        title="Moyosore O.F | Senior Shopify Website Designer"
+        description="Senior Shopify Website Designer with high sales conversion. 2k+ hours, Top Rated professional on Upwork."
         canonical="https://praise-oluwasakin-website.vercel.app/"
         openGraph={{
           url: "https://praise-oluwasakin-website.vercel.app/",
-          title: "Praise Oluwasakin | Frontend & Shopify Developer",
+          title: "Moyosore O.F | Senior Shopify Website Designer",
           description:
-            "Transforming static designs into high-converting digital experiences with React, Next.js, Tailwind CSS, and Shopify.",
+            "Senior Shopify Website Designer and Shopify Expert. Meticulous design, correct color schemes and conversion-optimized e-commerce stores.",
           images: [
             {
-              url: "https://praise-oluwasakin-website.vercel.app/profile.webp",
+              url: "https://praise-oluwasakin-website.vercel.app/Moyosore-potrait.webp",
               width: 1200,
               height: 630,
-              alt: "Praise Oluwasakin Portfolio",
+              alt: "Moyosore O.F Shopify Portfolio",
             },
           ],
-          site_name: "Praise Oluwasakin Portfolio",
+          site_name: "Moyosore O.F Portfolio",
         }}
         twitter={{
-          handle: "@mayorcodes",
-          site: "@mayorcodes",
           cardType: "summary_large_image",
         }}
       />
 
       <Head>
-        <title>Praise Oluwasakin | Frontend & Shopify Developer</title>
+        <title>Moyosore O.F | Senior Shopify Website Designer</title>
         <meta
           name="description"
-          content="Frontend & Shopify developer specializing in pixel-perfect development and high-performance e-commerce architectures."
+          content="Senior Shopify Website Designer with high sales conversion. 2k+ hours, Top Rated professional on Upwork."
         />
       </Head>
 
@@ -387,21 +360,19 @@ export default function PraisePortfolio() {
         >
           <div className="flex justify-between items-center px-5 md:px-16 py-4 max-w-[1280px] mx-auto">
             <a
-              href="#home"
-              onClick={(e) => scrollToSection(e, "home")}
-              className="flex items-center gap-2 font-display text-lg md:text-2xl font-bold text-brand-navy tracking-tight transition-opacity hover:opacity-80"
+              href="#about"
+              onClick={(e) => scrollToSection(e, "about")}
+              className="flex items-center gap-2.5 font-display text-lg md:text-xl font-bold text-brand-navy tracking-tight transition-opacity hover:opacity-80"
             >
-              <div className="bg-[#22223b] rounded-full p-1 flex items-center justify-center">
-                <img
-                  src="/PO-Logo.png"
-                  alt="Logo"
-                  className="w-9 h-9 md:w-10 md:h-10 object-contain animate-pulse-subtle"
-                />
-              </div>
-              <span>Praise Oluwasakin</span>
+              <img
+                src="/moyo-favicon-and-logo.png"
+                alt="Moyo Logo"
+                className="w-8 h-8 md:w-9 md:h-9 object-contain"
+              />
+              <span>Moyosore O.F</span>
             </a>
 
-            <nav className="hidden lg:flex items-center gap-5 xl:gap-7">
+            <nav className="hidden lg:flex items-center gap-6 xl:gap-8">
               {navItems.map((n) => (
                 <a
                   key={n.id}
@@ -409,8 +380,8 @@ export default function PraisePortfolio() {
                   onClick={(e) => scrollToSection(e, n.id)}
                   className={`font-body text-xs xl:text-sm font-semibold tracking-wide transition-colors duration-300 ${
                     active === n.id
-                      ? "text-brand-accent"
-                      : "text-brand-navy hover:text-brand-accent"
+                      ? "text-brand-navy border-b-2 border-brand-accent pb-1"
+                      : "text-brand-text-dim hover:text-brand-navy"
                   }`}
                 >
                   {n.label}
@@ -419,9 +390,9 @@ export default function PraisePortfolio() {
               <a
                 href="#contact"
                 onClick={(e) => scrollToSection(e, "contact")}
-                className="px-6 py-2 bg-cta text-brand-bg font-body text-sm font-semibold hover:opacity-90 transition-all duration-300 hover:translate-y-[-1px]"
+                className="px-5 py-2 bg-cta text-[#85c7f2] font-body text-xs font-bold uppercase tracking-wider hover:opacity-90 transition-all duration-300"
               >
-                Get in touch
+                Get In Touch
               </a>
             </nav>
 
@@ -431,26 +402,15 @@ export default function PraisePortfolio() {
               onClick={() => setMobileOpen((s) => !s)}
               className="lg:hidden text-brand-navy p-2 transition-transform duration-300 active:scale-95"
             >
-              <span
-                className={`inline-block transition-transform duration-300 ${
-                  mobileOpen ? "rotate-90" : "rotate-0"
-                }`}
-              >
-                {mobileOpen ? (
-                  <X className="w-6 h-6" />
-                ) : (
-                  <Menu className="w-6 h-6" />
-                )}
+              <span className={`inline-block transition-transform duration-300 ${mobileOpen ? "rotate-90" : "rotate-0"}`}>
+                {mobileOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
               </span>
             </button>
           </div>
 
-          <div
-            className={`mobile-nav-panel lg:hidden border-t border-architectural ${
-              mobileOpen ? "open" : ""
-            }`}
-          >
-            <div className="mobile-nav-inner px-5 pb-4">
+          {/* Mobile Panel */}
+          <div className={`mobile-nav-panel lg:hidden border-t border-architectural ${mobileOpen ? "open" : ""}`}>
+            <div className="mobile-nav-inner px-5 pb-4 bg-brand-bg">
               <div className="flex flex-col gap-1 pt-2">
                 {navItems.map((n) => (
                   <a
@@ -458,9 +418,7 @@ export default function PraisePortfolio() {
                     href={`#${n.id}`}
                     onClick={(e) => scrollToSection(e, n.id)}
                     className={`mobile-nav-link px-3 py-3 font-body text-sm font-semibold rounded-sm ${
-                      active === n.id
-                        ? "text-brand-accent bg-brand-navy/5"
-                        : "text-brand-navy hover:text-brand-accent"
+                      active === n.id ? "text-brand-navy bg-brand-navy/5" : "text-brand-text-dim hover:text-brand-navy"
                     }`}
                   >
                     {n.label}
@@ -469,9 +427,9 @@ export default function PraisePortfolio() {
                 <a
                   href="#contact"
                   onClick={(e) => scrollToSection(e, "contact")}
-                  className="mobile-nav-link mt-2 px-6 py-3 bg-cta text-brand-bg font-body text-sm font-semibold text-center"
+                  className="mobile-nav-link mt-2 px-6 py-3 bg-cta text-[#85c7f2] font-body text-xs font-bold uppercase tracking-wider text-center"
                 >
-                  Get in touch
+                  Get In Touch
                 </a>
               </div>
             </div>
@@ -480,253 +438,236 @@ export default function PraisePortfolio() {
 
         <main className="flex-grow pt-24 md:pt-32 pb-16 md:pb-20 px-4 md:px-16 max-w-[1280px] mx-auto w-full">
           {/* Hero */}
-          <section id="home" className="mb-20 md:mb-32">
-            <ScrollReveal>
-              <div className="fixed-grid">
-                <div className="col-span-4 md:col-span-10 md:col-start-2">
-                  <h1 className="font-display text-[28px] sm:text-[36px] md:text-[72px] font-extrabold text-brand-navy mb-6 md:mb-8 border-b border-architectural pb-6 md:pb-8 leading-[1.1] tracking-tight">
-                    Transforming Static Designs into High-Converting Digital
-                    Alchemies.
-                  </h1>
-                  <div className="flex flex-col md:flex-row gap-8 justify-between items-start">
-                    <p className="font-body text-lg text-brand-navy max-w-2xl leading-relaxed">
-                      Specializing in pixel-perfect frontend development and
-                      high-performance Shopify architectures for brands that
-                      demand excellence.
-                    </p>
-                    <div className="flex flex-wrap gap-4">
-                      <a
-                        href="https://www.upwork.com/freelancers/~01f7c3f6c2fdd0c680"
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="inline-flex items-center gap-2 bg-cta text-brand-bg px-6 py-3 font-body text-sm font-semibold hover:opacity-90 transition-all duration-300 hover:translate-y-[-1px]"
-                      >
-                        <SiUpwork className="w-4 h-4" />
-                        Hire on Upwork
-                      </a>
-                      <a
-                        href="#work"
-                        onClick={(e) => scrollToSection(e, "work")}
-                        className="inline-flex items-center gap-2 border border-brand-navy px-6 py-3 font-body text-sm font-semibold text-brand-navy hover:bg-brand-navy hover:text-brand-bg transition-all duration-300"
-                      >
-                        Explore Archives
-                        <ArrowRight className="w-4 h-4" />
-                      </a>
-                      <button
-                        onClick={downloadResume}
-                        className="inline-flex items-center gap-2 border border-brand-accent px-6 py-3 font-body text-sm font-semibold text-brand-navy hover:border-brand-navy transition-colors"
-                      >
-                        Download Resume
-                        <Download className="w-4 h-4" />
-                      </button>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </ScrollReveal>
-          </section>
-
-          {/* Stats */}
-          <section className="mb-20 md:mb-32 border-y border-architectural py-8 md:py-12">
-            <ScrollReveal delay={80}>
-              <div className="fixed-grid">
-                <div className="col-span-2 md:col-span-3 border-r border-architectural pr-4">
-                  <p className="font-body text-xs text-accent uppercase mb-2 tracking-wider">
-                    Performance
-                  </p>
-                  <p className="font-display text-[32px] font-bold text-brand-navy">
-                    +35%
-                  </p>
-                  <p className="font-body text-sm text-brand-navy mt-1">
-                    Speed Score
-                  </p>
-                </div>
-                <div className="col-span-2 md:col-span-3 border-r border-architectural px-4">
-                  <p className="font-body text-xs text-accent uppercase mb-2 tracking-wider">
-                    Impact
-                  </p>
-                  <p className="font-display text-[32px] font-bold text-brand-navy">
-                    $120K+
-                  </p>
-                  <p className="font-body text-sm text-brand-navy mt-1">
-                    Revenue Generated
-                  </p>
-                  <p className="font-body text-xs text-brand-navy mt-2 opacity-80">
-                    Boosting sales to $10K in &lt; 2 weeks via Klaviyo &amp; SEO
-                    management
-                  </p>
-                </div>
-                <div className="col-span-2 md:col-span-3 border-r border-architectural px-4 mt-8 md:mt-0">
-                  <p className="font-body text-xs text-accent uppercase mb-2 tracking-wider">
-                    Client
-                  </p>
-                  <p className="font-display text-[32px] font-bold text-brand-navy">
-                    95%
-                  </p>
-                  <p className="font-body text-sm text-brand-navy mt-1">
-                    Satisfaction
-                  </p>
-                </div>
-                <div className="col-span-2 md:col-span-3 pl-4 mt-8 md:mt-0">
-                  <p className="font-body text-xs text-accent uppercase mb-2 tracking-wider">
-                    Experience
-                  </p>
-                  <p className="font-display text-[32px] font-bold text-brand-navy">
-                    7+
-                  </p>
-                  <p className="font-body text-sm text-brand-navy mt-1">
-                    Years
-                  </p>
-                </div>
-              </div>
-            </ScrollReveal>
-          </section>
-
-          {/* About */}
           <section id="about" className="mb-20 md:mb-32">
-            <ScrollReveal delay={100}>
-              <div className="fixed-grid">
-                <div className="col-span-4 md:col-span-4">
-                  <div className="mb-6 md:mb-8 overflow-hidden border border-architectural md:grayscale md:hover:grayscale-0 transition-all duration-500">
-                    <img
-                      src="/profile.webp"
-                      alt="Praise Oluwasakin"
-                      className="w-full h-auto object-cover object-top aspect-[4/5]"
-                    />
-                  </div>
-                  <h2 className="font-display text-2xl md:text-[32px] font-bold text-brand-navy mb-4">
-                    Background
-                  </h2>
-                </div>
-                <div className="col-span-4 md:col-span-8">
-                  <p className="font-body text-lg text-brand-navy leading-relaxed mb-6">
-                    I am Praise Oluwasakin, a professional Frontend &amp;
-                    Shopify Developer and a student of Building at OAU. My dual
-                    background in structural architecture and digital
-                    engineering informs my approach to code: I build solid
-                    foundations that support scalable, aesthetically refined
-                    interfaces.
+            <ScrollReveal>
+              <div className="fixed-grid items-center">
+                <div className="col-span-4 md:col-span-7">
+                  <h1 className="font-display text-[32px] sm:text-[44px] md:text-[64px] font-extrabold text-brand-navy mb-6 md:mb-8 border-b border-architectural pb-6 md:pb-8 leading-[1.15] tracking-tight">
+                    Senior Shopify Website Designer with High Sales Conversion.
+                  </h1>
+                  <p className="font-body text-base md:text-lg text-brand-text-dim max-w-2xl leading-relaxed mb-8">
+                    Transforming brand objectives into exceptional, conversion-optimized, and visually stunning e-commerce stores. I build standard, premium Shopify storefronts that drive credibility and sales.
                   </p>
-                  <p className="font-body text-base text-brand-navy leading-relaxed">
-                    I specialize in translating complex design systems into
-                    robust, high-performance web experiences. My work bridges
-                    the gap between meticulous editorial design and the rigorous
-                    demands of modern e-commerce architectures.
+                  <div className="flex flex-wrap gap-4">
+                    <a
+                      href="https://www.upwork.com/freelancers/~01e48c9f09f436ce0e"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="inline-flex items-center gap-2 bg-cta text-[#85c7f2] px-6 py-3 font-body text-xs font-bold uppercase tracking-wider hover:opacity-95 transition-all duration-300 hover:translate-y-[-1px]"
+                    >
+                      <SiUpwork className="w-4 h-4" />
+                      Hire on Upwork
+                    </a>
+                    <a
+                      href="https://wa.me/2347048847485"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="inline-flex items-center gap-2 border border-brand-navy px-6 py-3 font-body text-xs font-bold uppercase tracking-wider text-brand-navy hover:bg-brand-navy hover:text-[#85c7f2] transition-all duration-300"
+                    >
+                      <FaWhatsapp className="w-4 h-4" />
+                      Let&apos;s Chat
+                    </a>
+                  </div>
+                </div>
+
+                {/* About Profile Card */}
+                <div className="col-span-4 md:col-span-5 mt-8 md:mt-0">
+                  <div className="border border-architectural p-5 bg-white/40 shadow-sm relative">
+                    <div className="overflow-hidden border border-architectural mb-5">
+                      <img
+                        src="/Moyosore-potrait.webp"
+                        alt="Moyosore O.F"
+                        className="w-full h-auto object-cover object-top aspect-[4/5] filter grayscale hover:grayscale-0 transition-all duration-700"
+                      />
+                    </div>
+                    <h2 className="font-display text-xl font-bold text-brand-navy mb-1.5">
+                      Moyosore O.F
+                    </h2>
+                    <p className="font-body text-xs text-brand-text-dim uppercase tracking-wider font-semibold">
+                      Shopify Professional Designer &amp; Builder
+                    </p>
+                  </div>
+                </div>
+              </div>
+            </ScrollReveal>
+          </section>
+
+          {/* Upwork Professional Badges & Stats */}
+          <section className="mb-20 md:mb-32 border-y border-architectural py-8 md:py-12 bg-white/20">
+            <ScrollReveal delay={80}>
+              <div className="fixed-grid text-center md:text-left">
+                <div className="col-span-2 md:col-span-3 border-r border-architectural pr-4 flex flex-col justify-center">
+                  <div className="flex items-center justify-center md:justify-start gap-2 text-brand-navy mb-1">
+                    <Award className="w-5 h-5 text-brand-navy" />
+                    <span className="font-body text-xs font-bold uppercase tracking-wider">Upwork Stats</span>
+                  </div>
+                  <p className="font-display text-[26px] md:text-[32px] font-extrabold text-brand-navy leading-none">
+                    Top Rated
+                  </p>
+                  <p className="font-body text-xs text-brand-text-dim mt-1.5">
+                    Professional Badge
+                  </p>
+                </div>
+                <div className="col-span-2 md:col-span-3 border-r border-architectural px-4 flex flex-col justify-center mt-6 md:mt-0">
+                  <div className="flex items-center justify-center md:justify-start gap-2 text-brand-navy mb-1">
+                    <Clock className="w-5 h-5 text-brand-navy" />
+                    <span className="font-body text-xs font-bold uppercase tracking-wider">Upwork Hours</span>
+                  </div>
+                  <p className="font-display text-[26px] md:text-[32px] font-extrabold text-brand-navy leading-none">
+                    2,000+
+                  </p>
+                  <p className="font-body text-xs text-brand-text-dim mt-1.5">
+                    Hours Documented
+                  </p>
+                </div>
+                <div className="col-span-2 md:col-span-3 border-r border-architectural px-4 flex flex-col justify-center mt-6 md:mt-0">
+                  <div className="flex items-center justify-center md:justify-start gap-2 text-brand-navy mb-1">
+                    <ThumbsUp className="w-5 h-5 text-brand-navy" />
+                    <span className="font-body text-xs font-bold uppercase tracking-wider">Availability</span>
+                  </div>
+                  <p className="font-display text-[26px] md:text-[32px] font-extrabold text-brand-navy leading-none">
+                    18h / Day
+                  </p>
+                  <p className="font-body text-xs text-brand-text-dim mt-1.5">
+                    Fast Response (&lt; 2h)
+                  </p>
+                </div>
+                <div className="col-span-2 md:col-span-3 pl-4 flex flex-col justify-center mt-6 md:mt-0">
+                  <div className="flex items-center justify-center md:justify-start gap-2 text-brand-navy mb-1">
+                    <CheckCircle className="w-5 h-5 text-brand-navy" />
+                    <span className="font-body text-xs font-bold uppercase tracking-wider">Dedication</span>
+                  </div>
+                  <p className="font-display text-[26px] md:text-[32px] font-extrabold text-brand-navy leading-none">
+                    100%
+                  </p>
+                  <p className="font-body text-xs text-brand-text-dim mt-1.5">
+                    Unlimited Revisions
                   </p>
                 </div>
               </div>
             </ScrollReveal>
           </section>
 
-          {/* The Standard (Principles/What I Do) */}
-          <section
-            id="standards"
-            className="mb-20 md:mb-32 border-t border-architectural pt-8 md:pt-12"
-          >
+          {/* Biography & Meet Moyo Video */}
+          <section className="mb-20 md:mb-32">
+            <ScrollReveal delay={100}>
+              <div className="fixed-grid items-start">
+                <div className="col-span-4 md:col-span-6 pr-0 md:pr-8">
+                  <h2 className="font-display text-2xl md:text-[36px] font-bold text-brand-navy mb-6 tracking-tight">
+                    Professional Biography
+                  </h2>
+                  <p className="font-body text-sm md:text-base text-brand-navy leading-relaxed mb-6">
+                    As a Shopify expert and store builder with unbeatable skills in the field, I design standard and top-notch Shopify stores that build your brand credibility and turn your products into a world top-class business.
+                  </p>
+                  <p className="font-body text-sm md:text-base text-brand-navy leading-relaxed mb-6">
+                    I collaborate closely with diverse clients to effectively transform objectives into conversion-optimized, visually stunning online storefronts. Unfortunately, over 90% of Shopify stores fail due to poorly constructed layouts, incorrect color schemes, or weak, unimpressive calls-to-action (CTAs). I am meticulous in my approach, taking all of these factors into account to provide you with the most outstanding Shopify design possible.
+                  </p>
+                  
+                  {/* Hiring Promises */}
+                  <h3 className="font-display text-lg font-bold text-brand-navy mt-8 mb-4">
+                    Upon hiring me, you will receive:
+                  </h3>
+                  <ul className="space-y-3 font-body text-xs md:text-sm text-brand-navy">
+                    <li className="flex items-start gap-2">
+                      <span className="text-[#85c7f2] font-semibold mt-0.5">✓</span>
+                      <span><strong>5+ Years Experience</strong> in e-commerce and Shopify store setups.</span>
+                    </li>
+                    <li className="flex items-start gap-2">
+                      <span className="text-[#85c7f2] font-semibold mt-0.5">✓</span>
+                      <span><strong>Vast Experience in Copywriting</strong> that converts visitors into buyers.</span>
+                    </li>
+                    <li className="flex items-start gap-2">
+                      <span className="text-[#85c7f2] font-semibold mt-0.5">✓</span>
+                      <span><strong>In-depth Knowledge of SEO</strong> to rank high and capture search intent.</span>
+                    </li>
+                    <li className="flex items-start gap-2">
+                      <span className="text-[#85c7f2] font-semibold mt-0.5">✓</span>
+                      <span><strong>Complete Branded Assets</strong> including landing pages and payment integrations.</span>
+                    </li>
+                    <li className="flex items-start gap-2">
+                      <span className="text-[#85c7f2] font-semibold mt-0.5">✓</span>
+                      <span><strong>100% Customer Satisfaction</strong> backed by unlimited revisions.</span>
+                    </li>
+                  </ul>
+                </div>
+
+                {/* Custom Video Portrait Section */}
+                <div className="col-span-4 md:col-span-6 mt-12 md:mt-0 flex flex-col items-center">
+                  <div className="w-full text-center mb-6">
+                    <h2 className="font-display text-2xl md:text-[36px] font-bold text-brand-navy mb-2 tracking-tight">
+                      Meet Moyo
+                    </h2>
+                    <p className="font-body text-xs md:text-sm text-brand-text-dim max-w-sm mx-auto">
+                      Watch my introductory video to learn more about my Shopify design methodology.
+                    </p>
+                  </div>
+                  <MeetMoyoVideo />
+                </div>
+              </div>
+            </ScrollReveal>
+          </section>
+
+          {/* Services Section */}
+          <section id="services" className="mb-20 md:mb-32 border-t border-architectural pt-12">
             <ScrollReveal delay={100}>
               <div className="fixed-grid">
                 <div className="col-span-4 md:col-span-4">
-                  <h2 className="font-display text-2xl md:text-[32px] font-bold text-brand-navy mb-4">
-                    The Build Standard
+                  <h2 className="font-display text-2xl md:text-[36px] font-bold text-brand-navy mb-4 tracking-tight">
+                    Services
                   </h2>
-                  <p className="font-body text-xs text-accent uppercase mb-6 tracking-wider">
-                    How I Architect Digital Products
+                  <p className="font-body text-xs text-brand-text-dim uppercase tracking-wider mb-6 font-semibold">
+                    Tailored Shopify Solutions
                   </p>
                   <p className="font-body text-sm text-brand-navy/80 leading-relaxed mb-6">
-                    Every website is treated as an engineered structure. I
-                    don&apos;t &quot;vibe-code&quot; or guess. I design, test,
-                    optimize, and build with structural integrity to ensure
-                    every build achieves maximum business value and user
-                    satisfaction.
+                    I treat every Shopify store design as a conversion engine. By optimizing color palettes, typography hierarchy, cart upsell triggers, and mobile layout layouts, I help store owners generate high conversion rates.
                   </p>
                 </div>
                 <div className="col-span-4 md:col-span-8 grid grid-cols-1 sm:grid-cols-2 gap-6">
-                  <div className="border border-architectural p-6 bg-brand-bg/40 hover:bg-brand-navy hover:text-brand-bg transition-all duration-300 group">
-                    <div className="w-10 h-10 flex items-center justify-center border border-brand-accent group-hover:border-brand-bg mb-4 transition-colors">
-                      <Zap className="w-5 h-5 text-brand-navy group-hover:text-brand-bg" />
+                  <div className="border border-architectural p-6 bg-white/20 hover:bg-brand-navy hover:text-white transition-all duration-300 group">
+                    <div className="w-10 h-10 flex items-center justify-center border border-brand-navy group-hover:border-white mb-4 transition-colors">
+                      <ShoppingBag className="w-5 h-5 text-brand-navy group-hover:text-brand-accent" />
                     </div>
-                    <h3 className="font-display text-lg font-semibold mb-2">
-                      Lighthouse Speed (≥ 90%)
+                    <h3 className="font-display text-lg font-bold mb-2">
+                      One Product Store Design
                     </h3>
-                    <p className="font-body text-xs md:text-sm leading-relaxed text-brand-navy/80 group-hover:text-brand-bg/80">
-                      Latency is lost revenue. I optimize assets, bundle size,
-                      font delivery, and caching to consistently achieve 90%+
-                      performance scores in Lighthouse audits.
+                    <p className="font-body text-xs md:text-sm leading-relaxed opacity-90">
+                      Crafting highly immersive landing pages focused around a single hero product, structured to maximize average order value (AOV) and direct conversions.
                     </p>
                   </div>
 
-                  <div className="border border-architectural p-6 bg-brand-bg/40 hover:bg-brand-navy hover:text-brand-bg transition-all duration-300 group">
-                    <div className="w-10 h-10 flex items-center justify-center border border-brand-accent group-hover:border-brand-bg mb-4 transition-colors">
-                      <Search className="w-5 h-5 text-brand-navy group-hover:text-brand-bg" />
+                  <div className="border border-architectural p-6 bg-white/20 hover:bg-brand-navy hover:text-white transition-all duration-300 group">
+                    <div className="w-10 h-10 flex items-center justify-center border border-brand-navy group-hover:border-white mb-4 transition-colors">
+                      <Zap className="w-5 h-5 text-brand-navy group-hover:text-brand-accent" />
                     </div>
-                    <h3 className="font-display text-lg font-semibold mb-2">
-                      Google SEO &amp; Conversions
+                    <h3 className="font-display text-lg font-bold mb-2">
+                      Dropshipping Stores &amp; POD
                     </h3>
-                    <p className="font-body text-xs md:text-sm leading-relaxed text-brand-navy/80 group-hover:text-brand-bg/80">
-                      A site is only useful if discovered. I implement
-                      structured markup, schema markup, semantic HTML, and
-                      Google Search Console to rank high and convert views into
-                      leads.
+                    <p className="font-body text-xs md:text-sm leading-relaxed opacity-90">
+                      Establishing fast-loading dropshipping storefronts (using SaleHoo or other platforms) and Print-on-Demand (POD) setups integrated with automatic supplier synchronization.
                     </p>
                   </div>
 
-                  <div className="border border-architectural p-6 bg-brand-bg/40 hover:bg-brand-navy hover:text-brand-bg transition-all duration-300 group">
-                    <div className="w-10 h-10 flex items-center justify-center border border-brand-accent group-hover:border-brand-bg mb-4 transition-colors">
-                      <Smartphone className="w-5 h-5 text-brand-navy group-hover:text-brand-bg" />
+                  <div className="border border-architectural p-6 bg-white/20 hover:bg-brand-navy hover:text-white transition-all duration-300 group">
+                    <div className="w-10 h-10 flex items-center justify-center border border-brand-navy group-hover:border-white mb-4 transition-colors">
+                      <Layers className="w-5 h-5 text-brand-navy group-hover:text-brand-accent" />
                     </div>
-                    <h3 className="font-display text-lg font-semibold mb-2">
-                      True Multi-Device Responsiveness
+                    <h3 className="font-display text-lg font-bold mb-2">
+                      Store Redesign &amp; CRO
                     </h3>
-                    <p className="font-body text-xs md:text-sm leading-relaxed text-brand-navy/80 group-hover:text-brand-bg/80">
-                      Responsive design is more than fluid columns. I verify tap
-                      targets, typography scaling, navigation menus, and media
-                      across all viewport ranges to eliminate poor mobile
-                      experiences.
+                    <p className="font-body text-xs md:text-sm leading-relaxed opacity-90">
+                      Revamping outdated layouts, optimizing bad typography, correcting wrong color schemes, and upgrading underperforming CTAs to drastically improve checkout rates.
                     </p>
                   </div>
 
-                  <div className="border border-architectural p-6 bg-brand-bg/40 hover:bg-brand-navy hover:text-brand-bg transition-all duration-300 group">
-                    <div className="w-10 h-10 flex items-center justify-center border border-brand-accent group-hover:border-brand-bg mb-4 transition-colors">
-                      <Heart className="w-5 h-5 text-brand-navy group-hover:text-brand-bg" />
+                  <div className="border border-architectural p-6 bg-white/20 hover:bg-brand-navy hover:text-white transition-all duration-300 group">
+                    <div className="w-10 h-10 flex items-center justify-center border border-brand-navy group-hover:border-white mb-4 transition-colors">
+                      <Activity className="w-5 h-5 text-brand-navy group-hover:text-brand-accent" />
                     </div>
-                    <h3 className="font-display text-lg font-semibold mb-2">
-                      Customer-Centric Perspective
+                    <h3 className="font-display text-lg font-bold mb-2">
+                      Bug Fixing &amp; Custom Coding
                     </h3>
-                    <p className="font-body text-xs md:text-sm leading-relaxed text-brand-navy/80 group-hover:text-brand-bg/80">
-                      I step directly into the customer&apos;s shoes to identify
-                      and eliminate design icks. I answer questions before they
-                      are asked, creating logical, friction-free customer
-                      journeys.
-                    </p>
-                  </div>
-
-                  <div className="border border-architectural p-6 bg-brand-bg/40 hover:bg-brand-navy hover:text-brand-bg transition-all duration-300 group">
-                    <div className="w-10 h-10 flex items-center justify-center border border-brand-accent group-hover:border-brand-bg mb-4 transition-colors">
-                      <Activity className="w-5 h-5 text-brand-navy group-hover:text-brand-bg" />
-                    </div>
-                    <h3 className="font-display text-lg font-semibold mb-2">
-                      Refined, Moderate Motion
-                    </h3>
-                    <p className="font-body text-xs md:text-sm leading-relaxed text-brand-navy/80 group-hover:text-brand-bg/80">
-                      Too much animation ruins the experience. I design
-                      deliberate animations (such as reveal-on-scroll and
-                      micro-interactions) that direct attention and improve
-                      visual flow.
-                    </p>
-                  </div>
-
-                  <div className="border border-architectural p-6 bg-brand-bg/40 hover:bg-brand-navy hover:text-brand-bg transition-all duration-300 group">
-                    <div className="w-10 h-10 flex items-center justify-center border border-brand-accent group-hover:border-brand-bg mb-4 transition-colors">
-                      <Layers className="w-5 h-5 text-brand-navy group-hover:text-brand-bg" />
-                    </div>
-                    <h3 className="font-display text-lg font-semibold mb-2">
-                      Shopify E-Commerce CRO
-                    </h3>
-                    <p className="font-body text-xs md:text-sm leading-relaxed text-brand-navy/80 group-hover:text-brand-bg/80">
-                      Maximizing storefront revenue requires deep architecture.
-                      I integrate marketing integrations, set up dynamic upsell
-                      patterns, and implement automated Klaviyo flows to grow
-                      your AOV.
+                    <p className="font-body text-xs md:text-sm leading-relaxed opacity-90">
+                      Solving layout spacing inconsistencies, resolving theme liquid issues, debugging slow performance, and building responsive checkout elements.
                     </p>
                   </div>
                 </div>
@@ -734,100 +675,75 @@ export default function PraisePortfolio() {
             </ScrollReveal>
           </section>
 
-          {/* Beyond the Code */}
-          <section
-            id="beyond"
-            className="mb-20 md:mb-32 border-t border-architectural pt-8 md:pt-12"
-          >
-            <ScrollReveal delay={120}>
-              <div className="fixed-grid">
+          {/* Technical Skills & Repertoire */}
+          <section id="skills" className="mb-20 md:mb-32 border border-architectural p-6 md:p-12 bg-white/10">
+            <ScrollReveal delay={80}>
+              <div className="fixed-grid items-start">
                 <div className="col-span-4 md:col-span-4">
-                  <h2 className="font-display text-[32px] font-bold text-brand-navy mb-4">
-                    Beyond the Code
+                  <h2 className="font-display text-xl md:text-[30px] font-bold text-brand-navy mb-4">
+                    Skills &amp; Knowledge
                   </h2>
+                  <p className="font-body text-xs text-brand-text-dim uppercase tracking-wider mb-6 font-semibold">
+                    Core Technical Toolbox
+                  </p>
                 </div>
                 <div className="col-span-4 md:col-span-8">
-                  <p className="font-body text-lg text-brand-navy leading-relaxed mb-12">
-                    Outside of client work, I serve as Co-Director of Skills
-                    &amp; Development at JCINOAU — Junior Chamber International
-                    Nigeria, Obafemi Awolowo University — alongside{" "}
-                    <strong>Loveth Oladejo</strong>, where we lead programs that
-                    equip students with practical, career-ready skills.
-                  </p>
-                  <div className="grid grid-cols-1 gap-8">
-                    <div className="border border-architectural p-6 md:p-8 bg-brand-bg">
-                      <h3 className="font-display text-2xl font-semibold mb-2 text-brand-navy">
-                        Ignite Academy 2026
-                      </h3>
-                      <p className="font-body text-xs text-accent uppercase mb-4 tracking-wider">
-                        JCINOAU Skills &amp; Development Directorate · 6-Week
-                        Program
-                      </p>
-                      <p className="font-body text-sm text-brand-navy leading-relaxed mb-4">
-                        Ignite Academy is more than a training program — it is a
-                        space where potential gets activated. Over 6 weeks,
-                        participants choose one core skill track and go deep
-                        with hands-on, practical learning they can actually use.
-                      </p>
-                      <p className="font-body text-xs text-accent uppercase mb-2 tracking-wider">
-                        Core Skill Tracks
-                      </p>
-                      <p className="font-body text-sm text-brand-navy leading-relaxed mb-4">
-                        Video Editing · Graphic Design · Content Writing · Data
-                        Analysis · Social Media Management · Virtual Assistant
-                      </p>
-                      <p className="font-body text-sm text-brand-navy leading-relaxed mb-4">
-                        Beyond the core track, participants also receive
-                        sessions on building a personal brand, optimizing
-                        LinkedIn, managing money, and using AI to work smarter —
-                        everything needed to show up ready in today&apos;s
-                        world.
-                      </p>
-                      <p className="font-body text-sm text-brand-navy leading-relaxed">
-                        By the end of the program, participants won&apos;t just
-                        have a skill — they&apos;ll know how to use it, talk
-                        about it, and earn from it.
+                  <div className="flex flex-wrap gap-2 md:gap-3">
+                    {skills.map((skill) => (
+                      <span
+                        key={skill}
+                        className="border border-architectural px-3.5 py-1.5 font-body text-xs uppercase tracking-wider bg-white/30 text-brand-navy hover:bg-brand-navy hover:text-white transition-all duration-200"
+                      >
+                        {skill}
+                      </span>
+                    ))}
+                  </div>
+                </div>
+              </div>
+            </ScrollReveal>
+          </section>
+
+          {/* Education & Language Qualifications */}
+          <section className="mb-20 md:mb-32 border-b border-architectural pb-12">
+            <ScrollReveal delay={100}>
+              <div className="fixed-grid">
+                <div className="col-span-4 md:col-span-6 pr-0 md:pr-8">
+                  <h3 className="font-display text-xl md:text-2xl font-bold text-brand-navy mb-6">
+                    Education
+                  </h3>
+                  <div className="space-y-6">
+                    <div className="border-l-2 border-brand-accent pl-4">
+                      <h4 className="font-display font-semibold text-sm md:text-base">
+                        Obafemi Awolowo University
+                      </h4>
+                      <p className="font-body text-xs text-brand-text-dim uppercase tracking-wider mt-1">
+                        Bachelor of Applied Science (BASc), Quantity Surveying · 2016-2022
                       </p>
                     </div>
-                    <div className="border border-architectural p-6 md:p-8 bg-brand-bg">
-                      <h3 className="font-display text-2xl font-semibold mb-2 text-brand-navy">
-                        Soft Skills Training (2025–2026)
-                      </h3>
-                      <p className="font-body text-xs text-accent uppercase mb-4 tracking-wider">
-                        JCINOAU Skills &amp; Development Directorate · JCINOAU
-                        Members &amp; OAU Students
+                  </div>
+                </div>
+
+                <div className="col-span-4 md:col-span-6 mt-8 md:mt-0">
+                  <h3 className="font-display text-xl md:text-2xl font-bold text-brand-navy mb-6">
+                    Qualifications &amp; Languages
+                  </h3>
+                  <div className="space-y-4 font-body text-sm text-brand-navy">
+                    <div>
+                      <p className="text-xs text-brand-text-dim uppercase tracking-wider mb-1 font-semibold">
+                        Verifications
                       </p>
-                      <p className="font-body text-sm text-brand-navy leading-relaxed mb-4">
-                        The Soft Skills Training was organized for members of
-                        JCINOAU and OAU students to equip them with practical
-                        insights on what soft skills training is and how
-                        important it is in a professional setting. The session
-                        aimed to help participants understand that soft skills
-                        are just as important as hard skills.
+                      <span className="inline-flex items-center gap-1.5 bg-[#85c7f2]/20 text-brand-navy px-3 py-1 rounded-full text-xs font-semibold">
+                        ✓ ID Verified Upwork Talent
+                      </span>
+                    </div>
+                    <div>
+                      <p className="text-xs text-brand-text-dim uppercase tracking-wider mb-1.5 font-semibold">
+                        Languages
                       </p>
-                      <p className="font-body text-xs text-accent uppercase mb-3 tracking-wider">
-                        Five Sessions · Five Speakers
-                      </p>
-                      <ul className="font-body text-sm text-brand-navy space-y-2">
-                        <li>
-                          <strong>Teamwork &amp; Conflict Resolution</strong>
-                        </li>
-                        <li>
-                          <strong>Leadership &amp; Problem Solving</strong>
-                        </li>
-                        <li>
-                          <strong>Communication &amp; Active Listening</strong>
-                        </li>
-                        <li>
-                          <strong>
-                            Time Management &amp; Critical Thinking
-                          </strong>
-                        </li>
-                        <li>
-                          <strong>
-                            Stress Management &amp; Decision Making
-                          </strong>
-                        </li>
+                      <ul className="space-y-1 text-xs md:text-sm">
+                        <li><strong>English</strong>: Native or Bilingual</li>
+                        <li><strong>French</strong>: Basic</li>
+                        <li><strong>Spanish</strong>: Basic</li>
                       </ul>
                     </div>
                   </div>
@@ -836,98 +752,63 @@ export default function PraisePortfolio() {
             </ScrollReveal>
           </section>
 
-          {/* Skills */}
-          <section
-            id="skills"
-            className="mb-20 md:mb-32 border border-architectural p-4 md:p-12"
-          >
-            <ScrollReveal delay={80}>
-              <h2 className="font-display text-xl md:text-[32px] font-bold text-brand-navy mb-4 md:mb-8 border-b border-architectural pb-3 md:pb-4">
-                Technical Repertoire
-              </h2>
-              <div className="flex flex-wrap gap-1.5 md:gap-3">
-                {skills.map((skill) => {
-                  const highlighted = highlightedSkills.has(skill);
-                  return (
-                    <span
-                      key={skill}
-                      className={`border px-2 py-1 md:px-4 md:py-2 font-body text-[9px] md:text-xs uppercase tracking-wide md:tracking-wider leading-tight ${
-                        highlighted
-                          ? "bg-brand-navy text-brand-bg border-brand-navy"
-                          : "border-brand-accent text-accent"
-                      }`}
-                    >
-                      {skill}
-                    </span>
-                  );
-                })}
-              </div>
-            </ScrollReveal>
-          </section>
-
-          {/* Projects */}
+          {/* Selected Projects */}
           <section id="work" className="mb-20 md:mb-32">
             <ScrollReveal delay={100}>
-              <div className="flex justify-between items-end mb-6 md:mb-12 border-b border-architectural pb-3 md:pb-4 gap-3">
-                <h2 className="font-display text-xl md:text-[32px] font-bold text-brand-navy">
-                  Selected Works
+              <div className="flex justify-between items-end mb-8 md:mb-12 border-b border-architectural pb-4 gap-3">
+                <h2 className="font-display text-2xl md:text-[36px] font-bold text-brand-navy tracking-tight">
+                  Selected E-Commerce Works
                 </h2>
                 {allProjects.length > 6 && (
                   <button
                     onClick={() => setShowAll((prev) => !prev)}
-                    className="font-body text-[10px] md:text-xs text-brand-navy hover:text-accent uppercase tracking-wider border-b border-transparent hover:border-accent transition-colors shrink-0"
+                    className="font-body text-[10px] md:text-xs text-brand-navy hover:text-brand-accent uppercase tracking-wider font-bold border-b border-transparent hover:border-brand-accent transition-colors shrink-0"
                   >
                     {showAll ? "Show Less" : `View All ${allProjects.length}`}
                   </button>
                 )}
               </div>
-              <div className="grid grid-cols-2 md:grid-cols-3 gap-2.5 md:gap-5">
+              <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-5">
                 {projectsToShow.map((p) => (
                   <article
                     key={p.title}
-                    className="border border-architectural flex flex-col group cursor-pointer"
+                    className="border border-architectural flex flex-col group cursor-pointer bg-white/20"
                     onClick={() => p.url && window.open(p.url, "_blank")}
-                    onKeyDown={(e) =>
-                      p.url && e.key === "Enter" && window.open(p.url, "_blank")
-                    }
+                    onKeyDown={(e) => p.url && e.key === "Enter" && window.open(p.url, "_blank")}
                     role={p.url ? "link" : "article"}
                     tabIndex={p.url ? 0 : undefined}
                   >
-                    <div className="h-28 sm:h-36 md:h-64 bg-brand-navy/10 relative overflow-hidden border-b border-architectural">
+                    <div className="h-44 sm:h-52 md:h-64 bg-brand-navy/5 relative overflow-hidden border-b border-architectural">
                       {p.media ? (
                         <img
                           src={p.media}
                           alt={p.title}
-                          className="w-full h-full object-cover"
+                          className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
                           onError={(e) => {
                             e.target.onerror = null;
                             e.target.style.display = "none";
-                            e.target.parentElement
-                              .querySelector(".fallback-icon")
-                              ?.classList.remove("hidden");
+                            e.target.parentElement.querySelector(".fallback-icon")?.classList.remove("hidden");
                           }}
                         />
                       ) : null}
-                      <div
-                        className={`fallback-icon absolute inset-0 flex items-center justify-center bg-brand-accent/20 ${p.media ? "hidden" : ""}`}
-                      >
-                        <p.Icon className="w-6 h-6 md:w-12 md:h-12 text-brand-accent" />
+                      <div className={`fallback-icon absolute inset-0 flex items-center justify-center bg-brand-navy/10 ${p.media ? "hidden" : ""}`}>
+                        <p.Icon className="w-10 h-10 text-brand-navy/40" />
                       </div>
                     </div>
-                    <div className="p-2.5 md:p-6 flex-grow flex flex-col justify-between bg-brand-bg group-hover:bg-brand-navy transition-colors duration-300">
+                    <div className="p-5 flex-grow flex flex-col justify-between hover:bg-brand-navy hover:text-white transition-colors duration-300">
                       <div>
-                        <h3 className="font-display text-[11px] sm:text-sm md:text-2xl font-semibold text-brand-navy group-hover:text-brand-bg transition-colors duration-300 mb-1 md:mb-2 line-clamp-2 md:line-clamp-none leading-tight">
+                        <h3 className="font-display text-base md:text-lg font-bold mb-2">
                           {p.title}
                         </h3>
-                        <p className="hidden md:block font-body text-sm text-brand-navy/80 group-hover:text-brand-bg/80 transition-colors duration-300 line-clamp-3">
+                        <p className="font-body text-xs md:text-sm opacity-90 leading-relaxed line-clamp-3">
                           {p.desc}
                         </p>
                       </div>
-                      <div className="mt-2 md:mt-6 flex flex-wrap gap-1 md:gap-2">
-                        {p.tags.slice(0, 2).map((t) => (
+                      <div className="mt-6 flex flex-wrap gap-1.5">
+                        {p.tags.slice(0, 3).map((t) => (
                           <span
                             key={t}
-                            className="text-[8px] md:text-[10px] uppercase tracking-wider text-accent group-hover:text-brand-bg/50 border border-accent group-hover:border-brand-bg/50 px-1 py-0.5 md:px-2 md:py-1"
+                            className="text-[9px] uppercase tracking-wider border border-current px-2 py-0.5"
                           >
                             {t}
                           </span>
@@ -940,76 +821,87 @@ export default function PraisePortfolio() {
             </ScrollReveal>
           </section>
 
+          {/* Testimonial slider component */}
           <ScrollReveal delay={120}>
             <Testimonials />
           </ScrollReveal>
 
-          {/* Contact */}
+          {/* Contact Section */}
           <section id="contact" className="mb-16">
             <ScrollReveal delay={80}>
-              <div className="fixed-grid border border-architectural">
-                <div className="col-span-4 md:col-span-5 p-8 md:p-12 border-b md:border-b-0 md:border-r border-architectural bg-brand-navy text-brand-bg">
-                  <h2 className="font-display text-[32px] font-bold mb-6">
-                    Initiate Dialogue
+              <div className="fixed-grid border border-architectural bg-white/10">
+                {/* Contact HUD Info */}
+                <div className="col-span-4 md:col-span-5 p-8 md:p-12 border-b md:border-b-0 md:border-r border-architectural bg-brand-navy text-white">
+                  <h2 className="font-display text-[28px] md:text-[32px] font-bold mb-6 tracking-tight">
+                    Initiate Project
                   </h2>
-                  <p className="font-body text-base mb-12 text-brand-bg/80">
-                    Available for freelance opportunities and collaborative
-                    architectural digital builds.
+                  <p className="font-body text-sm mb-12 text-white/80 leading-relaxed">
+                    Available for top-tier Shopify design consulting, complete Dropshipping custom designs, PageFly landing pages, or troubleshooting existing theme templates.
                   </p>
+                  
                   <div className="space-y-6">
                     <div>
-                      <p className="font-body text-xs text-brand-accent uppercase mb-1 tracking-wider">
+                      <p className="font-body text-[10px] text-brand-accent uppercase mb-1 tracking-wider font-bold">
                         Upwork (Preferred)
                       </p>
                       <a
-                        className="font-body text-base hover:underline underline-offset-4"
-                        href="https://www.upwork.com/freelancers/~01f7c3f6c2fdd0c680"
+                        className="font-body text-sm hover:text-brand-accent transition-colors inline-flex items-center gap-1.5"
+                        href="https://www.upwork.com/freelancers/~01e48c9f09f436ce0e"
                         target="_blank"
                         rel="noopener noreferrer"
                       >
-                        View Profile
+                        View Profile <ExternalLink className="w-3 h-3" />
                       </a>
                     </div>
                     <div>
-                      <p className="font-body text-xs text-brand-accent uppercase mb-1 tracking-wider">
-                        WhatsApp
+                      <p className="font-body text-[10px] text-brand-accent uppercase mb-1 tracking-wider font-bold">
+                        LinkedIn
                       </p>
                       <a
-                        className="font-body text-base hover:underline underline-offset-4"
-                        href="https://wa.me/2349158418618"
+                        className="font-body text-sm hover:text-brand-accent transition-colors inline-flex items-center gap-1.5"
+                        href="https://www.linkedin.com/in/moyosore-oluwasakin-11a96330b"
                         target="_blank"
                         rel="noopener noreferrer"
                       >
-                        Connect Directly
+                        Connect on LinkedIn <ExternalLink className="w-3 h-3" />
                       </a>
                     </div>
                     <div>
-                      <p className="font-body text-xs text-brand-accent uppercase mb-1 tracking-wider">
-                        iMessage / SMS
+                      <p className="font-body text-[10px] text-brand-accent uppercase mb-1 tracking-wider font-bold">
+                        WhatsApp Call / Chat
                       </p>
                       <a
-                        className="font-body text-base hover:underline underline-offset-4"
-                        href="sms:08139157598"
+                        className="font-body text-sm hover:text-brand-accent transition-colors"
+                        href="https://wa.me/2347048847485"
+                        target="_blank"
+                        rel="noopener noreferrer"
                       >
-                        Send a Message
+                        +234 704 884 7485
                       </a>
                     </div>
                     <div>
-                      <p className="font-body text-xs text-brand-accent uppercase mb-1 tracking-wider">
-                        Email
+                      <p className="font-body text-[10px] text-brand-accent uppercase mb-1 tracking-wider font-bold">
+                        iMessage / Call
                       </p>
-                      <a
-                        className="font-body text-base hover:underline underline-offset-4"
-                        href="mailto:praiseoluwasakin@gmail.com"
-                      >
+                      <a className="font-body text-sm hover:text-brand-accent transition-colors" href="tel:07048847485">
+                        0704 884 7485
+                      </a>
+                    </div>
+                    <div>
+                      <p className="font-body text-[10px] text-brand-accent uppercase mb-1 tracking-wider font-bold">
+                        Email Address
+                      </p>
+                      <a className="font-body text-sm hover:text-brand-accent transition-colors" href="mailto:praiseoluwasakin@gmail.com">
                         praiseoluwasakin@gmail.com
                       </a>
                     </div>
                   </div>
                 </div>
-                <div className="col-span-4 md:col-span-7 p-8 md:p-12">
+
+                {/* Formspree contact form */}
+                <div className="col-span-4 md:col-span-7 p-8 md:p-12 bg-white/20">
                   <form
-                    action="https://formspree.io/f/xykdkokv"
+                    action="https://formspree.io/f/xaqzpabv"
                     method="POST"
                     className="space-y-8"
                   >
@@ -1020,13 +912,13 @@ export default function PraisePortfolio() {
                     />
                     <div>
                       <label
-                        className="block font-body text-xs text-accent uppercase mb-2 tracking-wider"
+                        className="block font-body text-xs text-brand-navy uppercase mb-2 tracking-wider font-semibold"
                         htmlFor="name"
                       >
-                        Name
+                        Full Name
                       </label>
                       <input
-                        className="w-full bg-transparent border-b border-architectural py-2 font-body text-base text-brand-navy transition-colors placeholder-accent/50"
+                        className="w-full bg-transparent border-b border-architectural py-2 font-body text-sm text-brand-navy transition-colors placeholder-brand-navy/40"
                         id="name"
                         name="name"
                         placeholder="Jane Doe"
@@ -1036,13 +928,13 @@ export default function PraisePortfolio() {
                     </div>
                     <div>
                       <label
-                        className="block font-body text-xs text-accent uppercase mb-2 tracking-wider"
+                        className="block font-body text-xs text-brand-navy uppercase mb-2 tracking-wider font-semibold"
                         htmlFor="email"
                       >
                         Email Address
                       </label>
                       <input
-                        className="w-full bg-transparent border-b border-architectural py-2 font-body text-base text-brand-navy transition-colors placeholder-accent/50"
+                        className="w-full bg-transparent border-b border-architectural py-2 font-body text-sm text-brand-navy transition-colors placeholder-brand-navy/40"
                         id="email"
                         name="email"
                         placeholder="jane@example.com"
@@ -1052,26 +944,26 @@ export default function PraisePortfolio() {
                     </div>
                     <div>
                       <label
-                        className="block font-body text-xs text-accent uppercase mb-2 tracking-wider"
+                        className="block font-body text-xs text-brand-navy uppercase mb-2 tracking-wider font-semibold"
                         htmlFor="message"
                       >
-                        Project Details
+                        Shopify Project Details
                       </label>
                       <textarea
-                        className="w-full bg-transparent border-b border-architectural py-2 font-body text-base text-brand-navy transition-colors resize-none placeholder-accent/50"
+                        className="w-full bg-transparent border-b border-architectural py-2 font-body text-sm text-brand-navy transition-colors resize-none placeholder-brand-navy/40"
                         id="message"
                         name="message"
-                        placeholder="Describe the architectural needs of your digital project..."
+                        placeholder="Describe your Shopify store needs or bug fixes..."
                         rows="4"
                         required
                       />
                     </div>
                     <button
-                      className="bg-cta text-brand-bg font-body text-sm font-semibold px-8 py-4 w-full md:w-auto hover:opacity-90 transition-opacity flex items-center justify-center gap-2"
+                      className="bg-cta text-[#85c7f2] font-body text-xs font-bold uppercase tracking-wider px-8 py-4 w-full md:w-auto hover:opacity-90 transition-opacity flex items-center justify-center gap-2"
                       type="submit"
                     >
                       Submit Inquiry
-                      <Send className="w-4 h-4" />
+                      <Send className="w-3.5 h-3.5" />
                     </button>
                   </form>
                 </div>
@@ -1081,81 +973,66 @@ export default function PraisePortfolio() {
         </main>
 
         {/* Footer */}
-        <footer className="w-full border-t border-architectural bg-brand-bg">
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6 px-5 md:px-16 py-20 max-w-[1280px] mx-auto">
+        <footer className="w-full border-t border-architectural bg-white/20">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8 px-5 md:px-16 py-16 max-w-[1280px] mx-auto">
             <div>
               <a
-                href="#home"
-                onClick={(e) => scrollToSection(e, "home")}
-                className="flex items-center gap-2 font-display text-[28px] md:text-[32px] font-bold text-brand-navy mb-4 transition-opacity hover:opacity-80"
+                href="#about"
+                onClick={(e) => scrollToSection(e, "about")}
+                className="flex items-center gap-2.5 font-display text-xl font-bold text-brand-navy mb-4 transition-opacity hover:opacity-80"
               >
-                <div className="bg-[#22223b] rounded-full p-1 flex items-center justify-center">
-                  <img
-                    src="/PO-Logo.png"
-                    alt="Logo"
-                    className="w-9 h-9 md:w-10 md:h-10 object-contain animate-pulse-subtle"
-                  />
-                </div>
-                <span>Praise Oluwasakin</span>
+                <img
+                  src="/moyo-favicon-and-logo.png"
+                  alt="Moyo Logo"
+                  className="w-7 h-7 object-contain"
+                />
+                <span>Moyosore O.F</span>
               </a>
-              <p className="font-body text-sm text-brand-navy/70 mb-2">
-                © {new Date().getFullYear()} Praise Oluwasakin. All rights
-                reserved.
+              <p className="font-body text-xs text-brand-text-dim mb-2">
+                © {new Date().getFullYear()} Moyosore O.F. All rights reserved.
               </p>
-              <span className="font-body text-xs text-brand-navy/60">
-                Lagos, Nigeria
-              </span>
+              <p className="font-body text-[10px] text-brand-text-dim uppercase tracking-wider font-semibold">
+                Shopify professional website designer
+              </p>
+              <div className="mt-4 pt-4 border-t border-architectural/50">
+                <span className="font-body text-xs text-brand-text-dim">
+                  made by{" "}
+                  <a
+                    href="https://praise-oluwasakin-website.vercel.app/"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="font-semibold text-brand-navy hover:text-brand-accent underline underline-offset-2"
+                  >
+                    Praise Oluwasakin
+                  </a>
+                </span>
+              </div>
             </div>
-            <div className="flex flex-col gap-3">
-              <span className="font-body text-xs text-accent uppercase tracking-wider mb-2 font-bold">
-                Quick Navigation
+            
+            <div className="flex flex-col gap-2.5">
+              <span className="font-body text-xs text-brand-navy uppercase tracking-wider mb-2 font-bold">
+                Navigation
               </span>
               {navItems.map((n) => (
                 <a
                   key={n.id}
                   href={`#${n.id}`}
                   onClick={(e) => scrollToSection(e, n.id)}
-                  className="font-body text-xs text-brand-navy hover:underline decoration-1 underline-offset-4 transition-all duration-200 w-fit"
+                  className="font-body text-xs text-brand-text-dim hover:text-brand-navy hover:underline decoration-1 underline-offset-4 w-fit"
                 >
                   {n.label}
                 </a>
               ))}
-              <a
-                href="#contact"
-                onClick={(e) => scrollToSection(e, "contact")}
-                className="font-body text-xs text-brand-navy hover:underline decoration-1 underline-offset-4 transition-all duration-200 w-fit"
-              >
-                Get in Touch
-              </a>
             </div>
-            <div className="flex flex-col gap-3">
-              <span className="font-body text-xs text-accent uppercase tracking-wider mb-2 font-bold">
+            
+            <div className="flex flex-col gap-2.5">
+              <span className="font-body text-xs text-brand-navy uppercase tracking-wider mb-2 font-bold">
                 Connect
               </span>
               <div className="flex flex-wrap gap-2 max-w-[280px]">
                 <a
-                  className="w-10 h-10 flex items-center justify-center border border-architectural hover:border-brand-navy hover:bg-brand-navy hover:text-brand-bg transition-all duration-200"
-                  href="https://www.linkedin.com/in/praise-oluwasakin-409306239/"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  title="LinkedIn"
-                  aria-label="LinkedIn"
-                >
-                  <Linkedin className="w-5 h-5" />
-                </a>
-                <a
-                  className="w-10 h-10 flex items-center justify-center border border-architectural hover:border-brand-navy hover:bg-brand-navy hover:text-brand-bg transition-all duration-200"
-                  href="https://github.com/Praiseoluwasakin"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  title="GitHub"
-                  aria-label="GitHub"
-                >
-                  <Github className="w-5 h-5" />
-                </a>
-                <a
-                  className="w-10 h-10 flex items-center justify-center border border-architectural hover:border-brand-navy hover:bg-brand-navy hover:text-brand-bg transition-all duration-200"
-                  href="https://www.upwork.com/freelancers/~01f7c3f6c2fdd0c680"
+                  className="w-10 h-10 flex items-center justify-center border border-architectural text-brand-navy hover:bg-brand-navy hover:text-[#85c7f2] transition-all duration-200"
+                  href="https://www.upwork.com/freelancers/~01e48c9f09f436ce0e"
                   target="_blank"
                   rel="noopener noreferrer"
                   title="Upwork"
@@ -1164,50 +1041,44 @@ export default function PraisePortfolio() {
                   <SiUpwork className="w-5 h-5" />
                 </a>
                 <a
-                  className="w-10 h-10 flex items-center justify-center border border-architectural hover:border-brand-navy hover:bg-brand-navy hover:text-brand-bg transition-all duration-200"
-                  href="https://wa.me/2349158418618"
+                  className="w-10 h-10 flex items-center justify-center border border-architectural text-brand-navy hover:bg-brand-navy hover:text-[#85c7f2] transition-all duration-200"
+                  href="https://www.linkedin.com/in/moyosore-oluwasakin-11a96330b"
                   target="_blank"
                   rel="noopener noreferrer"
-                  title="WhatsApp"
-                  aria-label="WhatsApp"
+                  title="LinkedIn"
+                  aria-label="LinkedIn"
                 >
-                  <MessageCircle className="w-5 h-5" />
+                  <Linkedin className="w-5 h-5" />
                 </a>
                 <a
-                  className="w-10 h-10 flex items-center justify-center border border-architectural hover:border-brand-navy hover:bg-brand-navy hover:text-brand-bg transition-all duration-200"
-                  href="sms:08139157598"
-                  title="iMessage / SMS"
-                  aria-label="iMessage / SMS"
-                >
-                  <MessageSquare className="w-5 h-5" />
-                </a>
-                <a
-                  className="w-10 h-10 flex items-center justify-center border border-architectural hover:border-brand-navy hover:bg-brand-navy hover:text-brand-bg transition-all duration-200"
-                  href="mailto:praiseoluwasakin@gmail.com"
-                  title="Email"
-                  aria-label="Email"
-                >
-                  <Mail className="w-5 h-5" />
-                </a>
-                <a
-                  className="w-10 h-10 flex items-center justify-center border border-architectural hover:border-brand-navy hover:bg-brand-navy hover:text-brand-bg transition-all duration-200"
-                  href="https://twitter.com/mayorcodes"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  title="X (Twitter)"
-                  aria-label="X (Twitter)"
-                >
-                  <FaXTwitter className="w-5 h-5" />
-                </a>
-                <a
-                  className="w-10 h-10 flex items-center justify-center border border-architectural hover:border-brand-navy hover:bg-brand-navy hover:text-brand-bg transition-all duration-200"
-                  href="https://instagram.com/mayor.codes"
+                  className="w-10 h-10 flex items-center justify-center border border-architectural text-brand-navy hover:bg-brand-navy hover:text-[#85c7f2] transition-all duration-200"
+                  href="https://www.instagram.com/ijobamoyo"
                   target="_blank"
                   rel="noopener noreferrer"
                   title="Instagram"
                   aria-label="Instagram"
                 >
-                  <Instagram className="w-5 h-5" />
+                  <FaInstagram className="w-5 h-5" />
+                </a>
+                <a
+                  className="w-10 h-10 flex items-center justify-center border border-architectural text-brand-navy hover:bg-brand-navy hover:text-[#85c7f2] transition-all duration-200"
+                  href="https://www.tiktok.com/@oluwangh44g?_r=1&_t=ZS-9796pf9bys8"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  title="TikTok"
+                  aria-label="TikTok"
+                >
+                  <FaTiktok className="w-4 h-4" />
+                </a>
+                <a
+                  className="w-10 h-10 flex items-center justify-center border border-architectural text-brand-navy hover:bg-brand-navy hover:text-[#85c7f2] transition-all duration-200"
+                  href="https://wa.me/2347048847485"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  title="WhatsApp"
+                  aria-label="WhatsApp"
+                >
+                  <FaWhatsapp className="w-5 h-5" />
                 </a>
               </div>
             </div>
